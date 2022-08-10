@@ -34,5 +34,40 @@ router.get('/student-details/:name', function(req, res){
     
     res.send('Dummy response')
 })
+//-------------------solution 1-------------------------------
+router.get("/sol1", function (req, res) {
+    
+    let arr= [1,2,3,5,6,7]
+  
+    let total = 0;
+    for (var i in arr) {
+        total += arr[i];
+    }
+  
+    let lastDigit= arr.pop()
+    let consecutiveSum= lastDigit * (lastDigit+1) / 2
+    let missingNumber= consecutiveSum - total
+  
+    res.send(  { data: missingNumber  }  );
+  });
+ 
+
+//-------------------solution 2-------------------------------
+router.get("/sol2", function (req, res) {
+    const arr=[33, 34, 35, 37, 38]
+    let missingNumber=0
+    let sum=0
+    let n=arr.length
+    for(let i=0;i<arr.length;i++)
+    {
+        sum=sum+arr[i]
+    }
+    missingNumber=((n+1)*(arr[0]+arr[n-1])/2)-sum
+
+    res.send(  { data: missingNumber  }  );
+
+
+});
+
 
 module.exports = router;
