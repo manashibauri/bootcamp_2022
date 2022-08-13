@@ -5,7 +5,7 @@ const helperModule = require('../util/helper')
 const formatterModule = require('../validator/formatter')
 const router = express.Router();
 
-/*router.get('/test-me', function (req, res) {
+router.get('/test-me', function (req, res) {
     console.log('My batch is', introModule.name)
     introModule.printName()
     res.send('My second ever api!')
@@ -18,7 +18,7 @@ router.get('/test-you', function(req, res){
 
 router.get('/give-me-students-data',function(req, res){
 
-})*/
+})
 router.get('/test-me', function (req, res) {
     loggerModule.module();
     helperModule.Date();
