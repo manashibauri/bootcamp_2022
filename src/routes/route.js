@@ -1,73 +1,50 @@
 const express = require('express');
 const abc = require('../introduction/intro')
 const router = express.Router();
-
-router.get('/test-me', function (req, res) {
-    console.log('My batch is', abc.name)
-    abc.printName()
-    logger.welcome()
-
-    res.send('My second ever api!')
-});
-
-router.get('/students', function (req, res){
-    let students = ['Sabiha', 'Neha', 'Akash']
-    res.send(students)
+//----------------------1--------------------
+router.get('/movies', function (req , res){
+    let movies = ['3 Idiots', 'Harry Potter' , 'The Dark Knight' , 'Forrest Gump']
+    res.send(movies)
 })
-
-router.get('/student-details/:name', function(req, res){
-    /*
-    params is an attribute inside request that contains 
-    dynamic values.
-    This value comes from the request url in the form of an 
-    object where key is the variable defined in code 
-    and value is what is sent in the request
-    */
-
-    let requestParams = req.params
-
-    // JSON strigify function helps to print an entire object
-    // We can use any ways to print an object in Javascript, JSON stringify is one of them
-    console.log("This is the request "+ JSON.stringify(requestParams))
-    let studentName = requestParams.name
-    console.log('Name of the student is ', studentName)
-    
-    res.send('Dummy response')
+//-----------------2-3---------------------------
+router.get('/movies/:indexNumber', function (req , res){
+    let movies = ['3 Idiots', 'Harry Potter' , 'The Dark Knight' , 'Forrest Gump']
+    let index = req.params.indexNumber;
+    if(index > movies.length){
+        res.send("no movies exits with this id")
+    }else{
+        res.send(movies[index])
+    }
 })
-//-------------------solution 1-------------------------------
-router.get("/sol1", function (req, res) {
-    
-    let arr= [1,2,3,5,6,7]
-  
-    let total = 0;
-    for (var i in arr) {
-        total += arr[i];
+//----------------4----------------------------
+router.get('/films', function(req , res){
+let moviesName=[{
+    "id": 1,
+    "name": "End Game"
+    }, {
+    "id": 2,
+    "name": "Inception"
+    }, {
+    "id": 3,
+    "name": "Harry Potter"
+    }, {
+    "id": 4,
+    "name": "Finding Dory"
+    }]
+    res.send(moviesName)
+})
+//---------------------5-----------------------------
+router.get('/films/:indexNumber', function(req , res){
+    let moviesName=[ {"id": 1, "name": "Finding Dory"},
+    {"id": 2, "name": "The Dark Knight"},
+    {"id": 3, "name": "Forrest Gump"},
+    {"id": 4, "name": "Inception"}]
+    let index = req.params.indexNumber;
+    if(index > moviesName.length){
+        res.send("no movie exits with this id")
+    }else{
+        res.send(moviesName[index])
     }
-  
-    let lastDigit= arr.pop()
-    let consecutiveSum= lastDigit * (lastDigit+1) / 2
-    let missingNumber= consecutiveSum - total
-  
-    res.send(  { data: missingNumber  }  );
-  });
- 
 
-//-------------------solution 2-------------------------------
-router.get("/sol2", function (req, res) {
-    const arr=[33, 34, 35, 37, 38]
-    let missingNumber=0
-    let sum=0
-    let n=arr.length
-    for(let i=0;i<arr.length;i++)
-    {
-        sum=sum+arr[i]
-    }
-    missingNumber=((n+1)*(arr[0]+arr[n-1])/2)-sum
-
-    res.send(  { data: missingNumber  }  );
-
-
-});
-
-
+})
 module.exports = router;
