@@ -63,11 +63,39 @@ router.post("/test-post-3", function(req, res) {
 
 
 
-router.post("/test-post-4", function(req, res) {
+/*router.post("/test-post-4", function(req, res) {
     let arr= [ 12, "functionup"]
     let ele= req.body.element
     arr.push(ele)
     res.send(  { msg: arr , status: true }  )
-})
+})*/
+//----------------------------------------------------------------------------------------
+let player =
+[
+    {
+        "name": "manish",
+        "dob" : "1/1/1995",
+        "gender": "male",
+        "city": "jalandhar",
+        "sports":[
+            "swimming"
+        ]
+    },
+    {
+        "name": "gopal",
+        "dob" : "1/09/1995",
+        "gender": "male",
+        "city": "delhi",
+        "sports":[
+            "soccer"
+        ],
+    },
+]
+router.post("/player",function(req,res){
+    //code
+    let ele= req.body.element
+    player.push(ele)
+    res.send({data: player, status: true})
+});
 
 module.exports = router;
